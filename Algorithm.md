@@ -46,4 +46,16 @@ print(int(a) + int(b))
 1 2 #입력
 3 #출력
 ```
-
+### 10952번 : A+B -5
+https://www.acmicpc.net/problem/10952
+- 계속 마지막에 0이 프린트 되서 오류
+- A,B 를 둘다 int로 조건문에서 받아줘야함
+- 그래야 0이 마지막에 출력되지 않음
+```python
+while True:
+    A,B = input().split()
+    if int(A) == 0 and int(B) == 0 :
+        break
+    else :
+        print(int(A)+int(B))
+```
