@@ -59,3 +59,21 @@ while True:
     else :
         print(int(A)+int(B))
 ```
+
+### 9086번 : 문자열
+https://www.acmicpc.net/problem/9086
+- 가장 양끝의 문자열을 출력하는 문제
+- input의 첫번째에 숫자가 주어지는만큼 개수가 주어지는데, 그것을 첫 반복 값으로 받는다
+
+```python
+n = int(input())
+for i in range(n):
+    a = input()
+    print(a[:1]+a[-1:])
+```
+```python
+n = int(input())
+for i in range(n):
+    a = input()
+    print(f'{a[:1]}{a[-1:]}')
+```
