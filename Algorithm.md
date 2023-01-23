@@ -77,3 +77,63 @@ for i in range(n):
     a = input()
     print(f'{a[:1]}{a[-1:]}')
 ```
+
+
+## Bronze IV
+
+### 2742번 기찍 N (반대로 찍기)
+https://www.acmicpc.net/problem/2742
+
+
+```python
+a = int(input())
+
+for i in range(a) :
+    print(a-i)
+```
+
+### 15552번 빠른 A+B
+https://www.acmicpc.net/problem/15552
+- import sys로 해서 stdin.readline()를 사용해야 시간 초과가 안남
+- 사실 이 개념을 아직 잘 모름
+
+```python
+import sys
+
+T = int(input())
+for i in range(T):
+    a,b = map(int,sys.stdin.readline().split())
+    print(a+b)
+```
+
+### 11720번 숫자의 합
+https://www.acmicpc.net/problem/11720
+- 덩어리 숫자를 나누는 방법
+- 무조건 리스트를 새로 만들기보다는 sum을 사용할 것
+
+```python
+T = int(input())
+list = list(str(input())) # 하나의 덩어리 숫자를 각 자리수로 나눈다(리스트화)
+sum = 0
+for i in list:
+    sum += int(i)
+
+print(sum)
+```
+
+### 2480번 주사위 세개
+
+```python
+a,b,c = map(int,input().split()) # 한줄로 들어온 세개의 수를 각각 나눈다. 그리고 int 정수화 시킨다.
+
+if a == b and b == c and c == a :
+    print(10000 + a*1000)
+elif a == b and a != c :
+    print(1000 + b*100)
+elif a == c and a != b :
+    print(1000 + a*100)
+elif b == c and a != b :
+    print(1000 + b*100)
+elif a != b and b != c and c != a :
+    print((max(a,b,c)) * 100)  # a,b,c 각각 int로 있으면 max사용 가능
+```
