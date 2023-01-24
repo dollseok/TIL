@@ -245,5 +245,16 @@ while True:
 
     print(real_message)
 ```
+```python
+# 또 다른 짧은 풀이
+
+while True :
+    a = input()
+    if a == 'END' :
+        break
+    print(a[::-1])
+
+# 역순으로 출력하기
+```
 
 
