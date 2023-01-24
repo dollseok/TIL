@@ -137,3 +137,113 @@ elif b == c and a != b :
 elif a != b and b != c and c != a :
     print((max(a,b,c)) * 100)  # a,b,c 각각 int로 있으면 max사용 가능
 ```
+
+
+### 5543번 상근날드
+
+https://www.acmicpc.net/problem/5543
+
+```python
+menu_list = []
+#문제를 읽고 애초에 메뉴가 5개라 range를 5로 설정
+for i in range(5) :
+    a = int(input())
+    menu_list.append(a)
+
+burger = [menu_list[0] , menu_list[1], menu_list[2]]
+burger.sort()
+
+
+drink = [menu_list[3] , menu_list[4]]
+drink.sort()
+
+print(burger[0] + drink[0] - 50)
+
+```
+
+### 10808번 알파벳 개수
+
+https://www.acmicpc.net/problem/10808
+
+```python
+all_word = 'abcdefghijklmnopqrstuvwxyz'
+
+# print(list(all_word))
+
+a = input()
+
+for element in list(all_word):
+    cnt = a.count(element)
+    print(cnt, end = ' ')
+# 각 글자들의 개수를 확인해서 end를 한줄 내리는 것이 아닌 한칸 띄우는 것으로 출력
+```
+
+
+### 2845번 파티가 끝나고 난 뒤
+
+https://www.acmicpc.net/problem/2845
+
+```
+input 
+5 20
+99 101 1000 0 97
+```
+```
+output
+-1 1 900 -100 -3
+```
+
+```python
+p, sq = map(int,input().split())
+# print(p*sq)
+
+news = list(map(int,input().split()))
+# print(news)
+
+result_lst = []
+for i in news:
+    a = (i - (p*sq))
+    print(a, end= ' ')
+```
+
+### 11365번 !밀비 급일(일급 비밀!)
+
+https://www.acmicpc.net/problem/11365
+
+- 참고 사이트
+- https://itholic.github.io/python-reverse-string/
+
+```
+input
+!edoc doog a tahW
+noitacitsufbo
+erafraw enirambus detcirtsernu yraurbeF fo tsrif eht no nigeb ot dnetni eW
+lla sees rodroM fo drol eht ,ssertrof sih nihtiw delaecnoC
+END
+```
+```
+What a good code!
+obfustication
+We intend to begin on the first of February unrestricted submarine warfare
+Concealed within his fortress, the lord of Mordor sees all
+```
+
+```python
+while True:
+    a = input()
+    message = []
+
+    if a == 'END' :
+        break
+
+    b = list(a)
+
+    for i in range(len(b)) :
+        message.append(b[len(a)-i-1])
+
+    real_message = ''.join(message)
+
+    print(real_message)
+```
+
+
