@@ -257,4 +257,22 @@ while True :
 # 역순으로 출력하기
 ```
 
+### 2941번 크로아티아 알파벳
+
+https://www.acmicpc.net/problem/2941
+
+```python
+cro_word = input()
+cro_alpha= ['s=','lj' , 'dz=' , 'nj' , 'd-', 'z=', 'c-' , 'c=']
+
+for i in cro_alpha:
+    cro_word = cro_word.replace(i,'.')
+
+print(len(cro_word))
+
+# 문제에 따라서 dz= 과 순서를 조금 바꿔줬어야 했다.
+# find로 찾아서 있는지 없는지에 따라서 바꾸려했지만 'lj'가 안 먹히는 문제가 있었다.
+```
+
+
 
