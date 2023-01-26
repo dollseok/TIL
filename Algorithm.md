@@ -275,4 +275,133 @@ print(len(cro_word))
 ```
 
 
+### 1764번 듣보잡
 
+https://www.acmicpc.net/problem/1764
+
+**1. Set를 이용한 풀이**
+
+```python
+
+'''
+[input]
+
+3 4
+ohhenrie
+charlie
+baesangwook
+obama
+baesangwook
+ohhenrie
+clinton
+'''
+
+n , m = map(int,input().split())
+# 첫 input의 두 숫자를 n,m에 각각 넣어준다
+
+not_hear = []
+not_see = []
+
+for i in range(n):
+    not_hear.append(input())
+# n 번째 index까지 not_hear 
+
+for i in range(m):
+    not_see.append(input())
+# 그 후 m 번째 index까지 not_see
+
+not_hear_see = list(set(not_hear) & set(not_see)) # 두 set의 교집합을 리스트로
+not_hear_see.sort() #정렬
+
+print(len(not_hear_see))
+for k in not_hear_see:
+    print(k)
+
+'''
+[output]
+
+2
+baesangwook
+ohhenrie
+'''
+```
+**2. Dictionary를 이용한 풀이**
+```python
+'''
+[input]
+
+3 4
+ohhenrie
+charlie
+baesangwook
+obama
+baesangwook
+ohhenrie
+clinton
+'''
+
+n , m = map(int,input().split())
+
+not_hear_dict = {}
+not_see_dict = {}
+not_hear_see_list = []
+
+for i in range(n) :
+    not_hear_dict[input()] = 'not_hear'
+
+for i in range(m) :
+    not_see_dict[input()] = 'not_see'
+
+for i in not_see_dict.keys() :
+    if i in not_hear_dict.keys() :
+        not_hear_see_list.append(i)
+
+not_hear_see_list.sort()
+
+print(len(not_hear_see_list))
+for i in not_hear_see_list :
+    print(i)
+
+
+'''
+[output]
+
+2
+baesangwook
+ohhenrie
+'''
+```
+
+**3. list를 이용한 풀이**
+```python
+
+n , m = map(int,input().split())
+
+not_hear_list = []
+not_see_list = []
+not_hear_see_list = []
+
+
+not_hear_list = [input() for _ in range(n)]
+not_see_list = [input() for _ in range(m)]
+
+
+not_hear_see_list = [i for i in not_hear_list if i in not_see_list]
+
+not_hear_see_list.sort()
+
+print(len(not_hear_see_list))
+for i in not_hear_see_list :
+    print(i)
+
+```
+- 리스트를 이용한 풀이는 답은 맞지만 백준에서 '시간 초과' 오류
+
+    **why?**
+- 리스트 안에서 in 연산 속도의 문제
+
+- set, dictionary는 순서가 없어서 in 연산자 속도가 O(1)
+    - 순서가 없기에 속도는 상수 1이다
+
+- list는 순서가 있어서 in 연산자 속도가 O(n)
+    - n이 많아질수록 시간이 많아진다
