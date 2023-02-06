@@ -1,102 +1,42 @@
-#SWEA 1979번 D2 어디에 단어가 들어갈 수 잇을까?
-'''
-문제 링크
-https://swexpertacademy.com/main/talk/solvingClub/problemView.do?solveclubId=AYXI5IoKVCoDFAQK&contestProbId=AV5PuPq6AaQDFAUq&probBoxId=AYXI6OVKVLQDFAQK&type=PROBLEM&problemBoxTitle=D2&problemBoxCnt=5
+# SWEA 1979번 어디에 단어가 들어갈 수 있을까?
 
 
-'''
-
+import sys
+sys.stdin = open("input.txt", "r")
 
 T = int(input())
-
-for test_case in range(1,T+1):
-
-    n,k = map(int,input().split())
-
-    board = [input().split() for _ in range(n)]  # 한줄 한줄 가져온 것, 2차원 입력값 list에 저장하기 n x n
-
-    # input().split()을 n회만큼 한것
-    # [
-    # [0, 0, 1, 1, 1]
-    # [1, 1, 1, 1, 0]
-    # [0, 0, 1, 0, 0]
-    # [0, 1, 1, 1, 1]
-    # [1, 1, 1, 0, 1]
-    # ]
-    # print(board) #리스트 안의 리스트가 된다.
-
-    word = '1'*k
-
-    #가로
+for test_case in range(1, T+1):
+    N, K = map(int, input().split())    # N = 가로 세로 길이, K = 단어의 길이
     cnt = 0
-    for i in range(n) :
-        row = ''.join(board[i]) # 하나로 일단 합쳐준다
-        row_1 = row.split('0')  #0을 기준으로 분리 시킨다.
-        cnt += row_1.count(word)  # 111이 리스트 안에 있으면 개수를 센다
+    arr = list(input() for _ in range(N))
+    new_arr = list((arr[i].replace(' ', '')) for i in range(N))   # 문자열로 받은 arr의 공백을 지워줌
 
-    #세로
+    print(arr)         # ['0 0 1 1 1', '1 1 1 1 0', '0 0 1 0 0', '0 1 1 1 1', '1 1 1 0 1']
+    print(new_arr)     # ['00111', '11110', '00100', '01111', '11101']
 
-    for c in range(n):
+    for i in range(N):
+        check_list = new_arr[i].split('0')
 
-        column_list_i = []
-        for i in range(n):
-            column_list_i.append(board[i][c])
+        # print(check_list)
+        '''
+        split을 통해서 그 안에 덩어리들이 문자들어가는 개수와 맞는 지 확인 
+        ['', '', '111']
+        ['1111', '']
+        ['', '', '1', '', '']
+        ['', '1111']
+        ['111', '1']
+        '''
+        for i in check_list:
+            if '1'*K == i:     # K=3이라는 것은 111이 있는지 확인하면 되는 것
+                cnt += 1
 
-        col = ''.join(column_list_i)
-        col_1 = col.split('0')
-        cnt += col_1.count(word)
+    for j in range(N):
+        new_line = ''       # 세로줄을 만들어줄 새로운 라인을 변수를 만들어 줌
+        for i in range(N):
+            new_line += new_arr[i][j]    # 문자열이니 더하면 이어진다
+        check_list = new_line.split('0')
+        for i in check_list:
+            if '1'*K == i:
+                cnt += 1
 
     print(f'#{test_case} {cnt}')
-
-
-
-# 줄인 풀이
-
-T = int(input())
-
-for test_case in range(1,T+1):
-
-    n,k = map(int,input().split())
-    board = [input().split() for _ in range(n)] 
-    word = '1'*k
-    cnt = 0
-
-    #가로   
-    for i in range(n) :
-        row = ''.join(board[i]) # 하나로 일단 합쳐준다
-        cnt += (row.split('0')).count(word)  # 0을 기준으로 분리시키고 111이 리스트 안에 있으면 개수를 센다
-
-    #세로
-        column_list_i = ''.join([board[j][i] for j in range(n)]) #일정한 i에 대해 j를 추출해 column 을 만든다
-        cnt += (column_list_i.split('0')).count(word)
-
-    print(f'#{test_case} {cnt}')
-
-
-
-
-# 성민님 풀이
-
-t=int(input())
- 
-for z in range(1,t+1):
- 
-      a,b=map(int,input().split())
- 
-      lst=[input().split() for i in range(a)]
-      print(lst)
-      total=0
-      for i in range(a):
- 
-            c=list((''.join(lst[i])).split('0'))
-            print(c)
-            c2 = list((''.join([lst[j][i] for j in range(a)])).split('0'))
-             
-            total += (c.count('1'*b) + c2.count('1'*b))
-      print(f'#{z} {total}')
-
-
-
-
-
-
