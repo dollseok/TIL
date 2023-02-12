@@ -1,5 +1,13 @@
 #SWEA 3143번 가장빠른 문자열 타이핑
 
+'''
+문자열 A, 문자열 B가 주어진다
+문자열 A를 타이핑하려고하는데 문자열 B가 저장되어 있어서 키 한번 누른것으로 B 전체를 타이핑 할 수 있다
+A 전체를 타이핑 하기위해 키를 눌러야 하는 횟수 구하기
+
+
+'''
+
 import sys
 sys.stdin = open("input.txt", "r")
 
@@ -18,7 +26,7 @@ for test_case in range(1, T+1):
     cnt = 0
 
     while i < t_length:       # text를 끝까지 확인할 것이기에 범위를 끝까지 설정
-        j = 0
+        j = 0                 # 문자열 B(pattern)에서 첫번째부터 늘 돌아야해서 리셋을 시켜줌
 
         # 남은 길이가 pattern 길이보다 짧다면 남은 길이 cnt에 추가해주고 break
         if t_length - i < p_length:

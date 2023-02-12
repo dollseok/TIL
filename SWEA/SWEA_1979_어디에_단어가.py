@@ -1,5 +1,10 @@
 # SWEA 1979번 어디에 단어가 들어갈 수 있을까?
 
+'''
+NxN 크기의 단어 퍼즐
+특정 길이 K를 갖는 단어가 들어갈 수 있는 자리의 개수를 출력
+
+'''
 
 import sys
 sys.stdin = open("input.txt", "r")

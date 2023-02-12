@@ -30,7 +30,7 @@ for tc in range(1, T+1):
         counts[x] += 1          # 각 숫자에 대한 counts의 idx자리에 카운트가 +1 씩 됨
     # print(counts)     #[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 1]
     for i in range(1, size + 1):
-        counts[i] += counts[i-1]     # counts 누적합 리스트를 만듦, lst안에 있는 숫자가 몇번째로 들어갈지 알 수 있게 됨
+        counts[i] += counts[i-1]     # counts 누적합 리스트를 만듦, list안에 있는 숫자가 몇번째로 들어갈지 알 수 있게 됨
     # print(counts)     #[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 9, 10]
 
     temp_lst = [0]*N    # lst와 사이즈가 같은 임시 리스트
