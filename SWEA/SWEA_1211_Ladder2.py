@@ -3,6 +3,11 @@
 '''
 모든 출발점을 검사
 바닥까지 가장 짧은 이동거리
+
+아래 풀이에서는 그렇게 풀지 않았지만
+가장 첫번째에서 시작지점이 1인 지점의 인덱스를 리스트로 만들고 거기에서 인덱스를 뽑아서 쓰면 편하다
+
+최종 길이를 알아야해서 이동할 때마다 cnt를 1 추가하는 방식으로 길이를 잼
 '''
 
 
@@ -14,6 +19,14 @@ for _ in range(10):
     ladder = list([0] + list(map(int, input().split())) + [0] for _ in range(100))
     res_dict = {}               # 시작점과 길이를 받을 딕셔너리
 
+#     start_list = []
+#     for j in range(1,101):
+#         if ladder[0][j] == 1:
+#             start_list.append(j)    # j는 시작 지점의 인덱스
+#
+#     for start in start_list:
+#         cnt = 0
+#         # ... 으로 시작
 
     for j in range(1, 101):     # 가로 모든 부분 확인 할것
         cnt = 0                 # 길이를 변수로 저장

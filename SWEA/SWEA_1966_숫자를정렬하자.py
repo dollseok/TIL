@@ -1,5 +1,7 @@
 # SWEA 1966번 숫자를 정렬하자
 '''
+주어진 N 길이의 숫자열을 오름차순 정렬하는 문제
+숫자열에는 0도 포함
 텍스트 파일 안에 있는 최대값을 확인해서 공간 할당
 '''
 
@@ -15,11 +17,12 @@ for tc in range(1, T+1):
 
     # counts : lst에 있는 숫자를 인덱스로 받아 몇개 들어있는지 확인하는 리스트
     # counts는 lst에 있는 숫자의 최대값으로 사이즈를 설정한다.
+
     size = 1   # 최소한 1개의 숫자는 있을 것이기에 size 변수로 설정
     for x in range(N):
         if (lst[x]) > size:
             size = (lst[x])
-    counts = [0] * (size + 1)    # 0-N까지의 사이즈여야함으로 size +1을 해줌
+    counts = [0] * (size + 1)    # 0-N까지의 0을 포함한 사이즈여야함으로 size +1을 해줌
     # print(counts)     # counts = [0, 0, 0, 0, 0, ...0, 0]
 
     # counts의 요소를 채워줌(lst의 개수 세기)

@@ -1,4 +1,4 @@
-# SWEA 문제해결 기본 Flatten
+# SWEA 1208번 Flatten
 
 
 '''

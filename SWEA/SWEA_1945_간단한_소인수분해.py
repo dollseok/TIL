@@ -1,4 +1,11 @@
-# SWEA 1945번
+# SWEA 1945번 간단한 소인수 분해
+
+'''
+N = 2**a * 3**b * 5**c * 7**d * 11**e
+
+a,b,c,d,e 출력하는 문제
+'''
+
 
 # 나의 풀이
 import sys
@@ -30,11 +37,11 @@ for test_case in range(1, T+1):
 # T = int(input())
 # for test_case in range(1, T+1):
 #     N = int(input())
-#     cnts = [0]*len(divs)
+#     cnts = [0]*len(divs)            # 소인수들의 곱해진 개수를 세는 리스트
 #
 #     for i in range(len(divs)):
-#         while N % divs[i] == 0:
-#             cnts[i] += 1
+#         while N % divs[i] == 0:    # 나머지가 0이 아닐 때까지 while 문을 돌림
+#             cnts[i] += 1           # 해당 인덱스의 개수를 하나씩 세줌
 #             N = N // divs[i]
 #
 #     print(f'#{test_case}', *cnts)

@@ -1,5 +1,11 @@
 # SWEA 1221번 GNS
 
+'''
+문자로 되어있는 0-9 리스트를 정렬하는 문제
+
+처음엔 인덱스 오류로 인해 마지막 것을 정렬하지 못했었다.
+'''
+
 
 import sys
 sys.stdin = open("input.txt", "r")
@@ -34,10 +40,11 @@ for test_case in range(T):
         GNS_dict[i] += 1
 
     for i in GNS_dict.keys():
-        res += (i + ' ')*GNS_dict[i]
+        res += (i + ' ')*GNS_dict[i]     # 이어서 한칸 공백과 추가를 하기 때문에 ' ' 를 붙여서 더해줌
 
     print(f'{tc}')
-    print(res.rstrip())
+    print(res)
+    # print(res.rstrip())   # 옆에 공백 빼줘야하는 줄 알았는데 없어도 오류 없이 패스
 
 
 
@@ -45,13 +52,13 @@ for test_case in range(T):
 
 # 마지막에 보면 한 단어가정리가 안되어있음, 확인하기
 
-# GNS_dict = {}
-# GNS_dict_rev = {}
+# GNS_dict = {}          # 문자를 숫자로 만들 딕셔너리
+# GNS_dict_rev = {}      # 숫자를 문자로 다시 만들 딕셔너리
 #
 # key = ["ZRO", "ONE", "TWO", "THR", "FOR", "FIV", "SIX", "SVN", "EGT", "NIN"]
 # value = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 # for o in range(10):
-#     GNS_dict[key[o]] = value[o]
+#     GNS_dict[key[o]] = value[o]        # key와 value가 서로 반대인 딕셔너리를 만들어줌
 #     GNS_dict_rev[value[o]] = key[o]
 #
 # T = int(input())
@@ -60,14 +67,14 @@ for test_case in range(T):
 #     line = list(input().split())
 #
 #     for k in range(int(N)):
-#         line[k] = GNS_dict[line[k]]
+#         line[k] = GNS_dict[line[k]]          # 문자로 된 숫자를 진짜 숫자로 만들어줌
 #
-#     for i in range(int(N)-1):        # 오름차순으로 버블 정렬
+#     for i in range(int(N)-1):                # 오름차순으로 버블 정렬
 #         for j in range(i+1, int(N)):
 #             if line[i] > line[j]:
 #                 line[i], line[j] = line[j], line[i]
 #
-#     for t in range(int(N)):
+#     for t in range(int(N)):                  # 숫자를 다시 문자로 만들어줌
 #         line[t] = GNS_dict_rev[line[t]]
 #
 #     print(f'{tc}')
