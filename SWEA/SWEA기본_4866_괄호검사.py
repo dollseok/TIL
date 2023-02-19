@@ -5,6 +5,61 @@
 수혁님 코드 참고하기   #class
 '''
 
+# 새로 푼 풀이
+
+import sys
+sys.stdin = open("input.txt", "r")
+
+T = int(input())
+for test_case in range(1,T+1):
+    code = input()
+    n = len(code)
+    stack = []
+    res = 1
+
+    for i in range(n):
+        if code[i] in '(){}[]':    # 괄호인 경우만 체크
+            if not stack:
+                stack.append(code[i])
+            else:
+                if code[i] in '({[':          # 열리는 괄호면
+                    stack.append(code[i])     # 스택에 추가
+                else:                         # 열리는 괄호가 아닐 때
+                    if code[i] == ')':
+                        if stack[-1] == '(':  # 같은 쌍이면
+                            stack.pop()       # 세트이니 스택에서 빼줌
+                        else:                 # 같은 쌍이 아니면
+                            res = 0           # 결과 0
+                            break             # 검사 끝
+
+                    elif code[i] == '}':
+                        if stack[-1] == '{':
+                            stack.pop()
+                        else:
+                            res = 0
+                            break
+
+                    elif code[i] == ']':
+                        if stack[-1] == '[':
+                            stack.pop()
+                        else:
+                            res = 0
+                            break
+
+    if stack:               # 다 끝나고 나왔는데 스택이 들어있으면
+        res = 0             # 결과 0
+
+    print(f'#{test_case}', res)
+
+
+
+
+
+
+# -------------------------------------------------------------------------------#
+# 이전에 풀었던 풀이
+
+
 import sys
 sys.stdin = open("input.txt", "r")
 

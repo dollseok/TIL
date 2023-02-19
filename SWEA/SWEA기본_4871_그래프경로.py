@@ -10,6 +10,61 @@ E개의 줄에 걸쳐 출발 도착 노드로 간선 정보
 출발 노드 S, 도착 노드 G
 '''
 
+# 새로 푼 풀이(거의 유사)
+
+import sys
+sys.stdin = open("input.txt", "r")
+
+T = int(input())
+for test_case in range(1,T+1):
+    V, E = map(int, input().split())    # V의 개수, E (길의 개수)
+    arr = [[0]*V for _ in range(V)]
+    visited = [False]*V
+    stack = []
+    res = 0
+
+    # 방향성을 나타낸 arr 생성
+    for i in range(E):
+        v1, v2 = map(int, input().split())
+        v1 = v1 - 1
+        v2 = v2 - 1
+        arr[v1][v2] = 1
+
+    # for i in range(V):
+    #     print(arr[i])
+
+    S, G = map(int, input().split())
+    S = S - 1
+    G = G - 1
+
+    v = S
+    visited[v] = True
+
+    while True:
+        for w in range(V):
+            if arr[v][w] == 1 and visited[w] == False:
+                stack.append(v)
+                v = w
+                visited[w] = True
+                break
+
+        else:
+            if not stack:              # 이어지는게 없을 경우
+                res = 0                # 결과 = 0
+                break
+            v = stack.pop()            # 스택이 남아있으면 그리로 일단 돌아간다
+
+        if v == G:                     # v가 goal에 도착했을 때
+            res = 1                    # res = 1 갈수 있다는 것
+            break
+
+    print(f'#{test_case}', res)
+
+
+
+#------------------------------------------------------------------------------------#
+# 이전에 풀었던 풀이
+
 import sys
 sys.stdin = open("input.txt", "r")
 
