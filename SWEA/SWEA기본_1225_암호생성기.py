@@ -9,6 +9,31 @@
 숫자가 감소할 때 0보다 작아지는 경우 0 으로 유지되고 프로그램 종료
 '''
 
+# 배운 풀이
+# 선형큐를 이용한 풀이
+import sys
+sys.stdin = open("input.txt", "r")
+
+for _ in range(10):
+    tc = int(input())
+    queue = list(map(int, input().split()))
+
+    cnt = 1                        # 사이클 시작 1
+    while queue[-1] > 0:           # queue의 마지막이 0보다 클 때 while문 반복
+        if cnt == 6:               # cnt 6이 되면 한사이클을 다 돈 것
+            cnt = 1                # cnt 1로 바꾸어 줌
+
+        queue.append(queue.pop(0) - cnt)        # 맨앞 숫자를 꺼낸후에 cnt을 빼는 것
+        cnt += 1                                # 사이클의 다음 단계
+
+    if queue[-1] < 0:              # queue의 마지막이 0보다 작아지면
+        queue[-1] = 0              # 그 작아진 마지막 수를 0으로 바꿈
+
+    print(f'#{tc}', *queue)
+
+
+# 내가 푼 방법
+# 원형 큐로 푸는 방법
 
 import sys
 sys.stdin = open("input.txt", "r")
