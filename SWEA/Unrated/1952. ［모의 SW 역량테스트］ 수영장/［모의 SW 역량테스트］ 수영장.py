@@ -5,6 +5,10 @@
 
 def dfs(month, pay):
     global min_pay
+    #가지 치기
+    if pay > min_pay:
+        return
+    
     if month > 12:
         if min_pay > pay:
             min_pay = pay
