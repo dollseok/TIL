@@ -1,3 +1,6 @@
+'''
+쿼드 트리
+'''
 n = int(input())
 arr = []
 
@@ -6,44 +9,22 @@ result = [0,0]
 for _ in range(n):
     arr.append(list(map(int,input().split())))
 
-visited = [[False]*n for _ in range(n)]
+def quadTree(x,y,N):
+    color = arr[x][y]
+    for i in range(x,x+N):
+        for j in range(y,y+N):
+            if color != arr[i][j]:
+                quadTree(x,y,N//2)
+                quadTree(x,y+N//2, N//2)
+                quadTree(x+N//2, y, N//2)
+                quadTree(x+N//2, y+N//2, N//2)
+                return
+    if color == 0:
+        result[color] += 1
+    else:
+        result[color] += 1
 
-origin_size = n
-n = n*2
-while n != 1:
-    n = n//2
-    checkpoint = []
+quadTree(0,0,n)
 
-    for i in range(origin_size//n):
-        for j in range(origin_size//n):
-            checkpoint.append((i*n,j*n))
-
-    for x,y in checkpoint:
-        pass_signal = False
-        full_size = n * n
-        start_num = arr[x][y]
-        cnt = 0
-
-        if not visited[x][y]:
-            for i in range(n):
-                for j in range(n):
-                    tx = x + i
-                    ty = y + j
-                    if arr[tx][ty] != start_num:
-                        pass_signal = True
-                        break
-                    else:
-                        cnt += 1
-                if pass_signal:
-                    break
-
-        # 한개가 전부 찼을 때
-        if cnt == full_size:
-            result[start_num] += 1
-            # visited 변경
-            for i in range(n):
-                for j in range(n):
-                    visited[x+i][y+j] = True
-
-for i in result:
-    print(i)
+print(result[0])
+print(result[1])
