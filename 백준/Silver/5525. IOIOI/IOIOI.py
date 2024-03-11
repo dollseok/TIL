@@ -6,19 +6,19 @@ n = int(input())
 m = int(input())
 data = input()
 
-
-P = 'I'
-for i in range(n):
-    P = P + 'OI'
-
+i = 0
 cnt = 0
+result = 0
 
-for i in range(m-len(P)+1):
-    compare_ = ''
-    if data[i] == 'I':
-        for j in range(len(P)):
-            compare_ += data[i+j]
-            if compare_ == P:
-                cnt += 1
+while i < (m-1):
+    if data[i:i+3] == 'IOI':
+        i += 2
+        cnt += 1
+        if cnt == n:
+            result += 1
+            cnt -= 1
+    else:
+        i += 1
+        cnt = 0
 
-print(cnt)
+print(result)
