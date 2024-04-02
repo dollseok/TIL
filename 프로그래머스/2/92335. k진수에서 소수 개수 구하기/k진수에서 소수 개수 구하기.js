@@ -20,6 +20,11 @@ function solution(n, k) {
     var answer = -1;
     let answer_list = []
     let num_list = []
+    // // 쉽게 만드는 법
+    // let num = n.toString(k)
+    // let numArr = num.split('0')
+    // console.log(numArr)
+    
     // num_list 만들기
     while (n > 0){
         num_list.unshift(n%k)
@@ -49,9 +54,6 @@ function solution(n, k) {
         
     })
     
-  
     answer = result
-    
-    
     return answer;
 }
