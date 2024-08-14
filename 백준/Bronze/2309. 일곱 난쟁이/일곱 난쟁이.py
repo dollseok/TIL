@@ -1,30 +1,44 @@
-# Baekjoon 2304번 창고 다각형
+'''
+일곱난장이 키 합이 100이다
+가능한 답이 여러개면 아무거나 출력
+
+7이여야하는데 9가 들어옴
+9개 중에 7개 선택 => 총 100개 안됨
+
+1. combi로 풀어라
+2. 완탐 방식은 어떤 것일까?
 
 '''
-아홉 줄에 걸쳐 난쟁이들의 키가 주어진다
-키는 100을 넘지 않고 가능한 정답이 여러가지인 경우에는 아무거나 출려간다
 
-부분 집합
-'''
+from itertools import combinations
 
+lst = []
+for _ in range(9):
+    lst.append(int(input()))
 
-# import sys
-# sys.stdin = open('input.txt', 'r')
-
-data = [int(input()) for _ in range(9)]
-# print(data)    # [20, 7, 23, 19, 10, 15, 25, 8, 13]
-
-n = len(data)    # 9
-
-for i in range(1 << n):    # 000000000 - 111111111 범위 1000000000(이것은 포함 x)
-    res = []
-    for j in range(n):     # j 9번까지 밀수 있음
-        if i & (1 << j):     # 9번 미는데 9자리 중에 1인것만 체크해서 리스트에 추가 
-            res.append(data[j])
-
-    if sum(res) == 100 and len(res) == 7:     # 일곱난쟁이, 합이 100
+for comb in combinations(lst,7):
+    if sum(comb) == 100:
+        comb = sorted(list(comb))
+        for i in comb:
+            print(i)
         break
 
-res.sort()
-for i in range(7):
-    print(res[i])
+
+
+# def combi(arr,r):
+#     result = []
+#     if r > len(arr):
+#         return result
+#
+#     if r == 1:
+#         for i in arr:
+#             result.append([i])
+#     elif r > 1:
+#         for i in range(len(arr) - r + 1 ):
+#             for j in combi(arr[i+1:],r-1):
+#                 result.append([arr[i]]+j)
+#
+#     return result
+#
+
+
