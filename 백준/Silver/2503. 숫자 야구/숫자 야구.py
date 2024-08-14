@@ -31,7 +31,7 @@ for _ in range(N):
         check = list(str(n))
         strike_cnt = 0
         ball_cnt = 0
-        if len(set(candi)) == 3 and '0' not in candi: # 중복된 것 없을때만 검사
+        if len(set(candi)) == 3 and '0' not in candi: # 중복된 것 없을때만 검사, 그리고 0이 들어가면 안됨
             for j in range(3):
                 if candi[j] == check[j]:
                     strike_cnt += 1
