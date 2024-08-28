@@ -1,33 +1,62 @@
-n,m = map(int,input().split())
-data = list(map(int,input().split()))
+'''
+수들의 합 2
 
-left = 0
-right = 0
+i~j까지 범위의 합을 구하는 것
+
+1. 완전 탐색
+i,j 다 잡아서 2중 포문
+
+2. 누적합
+
+3. 투포인터
+
+'''
+
+n,m = map(int,input().split())
+ls = list(map(int,input().split()))
+
+s = 0
+e = 0
+
+tot = ls[s]
 cnt = 0
 
-while True:
-    _sum = sum(data[left:right+1])
-    # 결과값 검토
-    if _sum == m:
-        cnt += 1
-
-    # 끝내는 부분
-    if left >= n - 1 and right >= n - 1:
-        break
-
-    # 다음 단계로 넘어감
-    if left == right and right < n-1:
-        right += 1
-    else:  # left < right
-        if _sum < m:
-            if right < n-1:
-                right += 1
-            else:
-                left += 1
-
-        elif _sum >= m:
-            if left < n-1:
-                left += 1
-
+while e < n and s < n:
+    # print(tot,s,e)
+    if e != n-1:
+        if tot < m:
+            e += 1
+            tot += ls[e]
+        elif tot > m:
+            tot -= ls[s]
+            s += 1
+        else:
+            cnt += 1
+            tot -= ls[s]
+            s += 1
+            e += 1
+            tot += ls[e]
+    else:
+        if tot > m:
+            tot -= ls[s]
+            s += 1
+        elif tot == m:
+            cnt += 1
+            tot -= ls[s]
+            s += 1
+        else:
+            break
 
 print(cnt)
+
+'''
+3 1
+1 2 1
+
+5 2
+5 2 1000 1 1
+
+1 1
+1
+
+'''
