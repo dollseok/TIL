@@ -1,33 +1,53 @@
-# SWEA 10816번 숫자 카드2
-
-'''
-숫자 카드 N개, 주어지는 정수 M개
-이 수가 적혀있는 숫자 카드를 상근이가 몇개 가지고 있나?
 '''
 
-# import sys
-# sys.stdin = open('input.txt', 'r')
+12 => 3
+-10 -10 2 3 3 6 7 10 10 10 10 10
+s                                  0
+                               e   9  => 4
+                 m                 m > t
+s
+                 e
+          m
+
+
+
+'''
 
 N = int(input())
-N_data = list(map(int,input().split()))
-N_set = set(N_data)
+ls = sorted(list(map(int,input().split())))
+
 M = int(input())
-M_data = list(map(int, input().split()))
-res_list = [0]*M
-dict = {}
+cards = list(map(int,input().split()))
 
-# for 안에 count라 시간복잡도가 M*N으로 제곱이 나와서 시간 초과
-# for i in range(M):
-#     a = M_data[i]
-#     if a in N_set:
-#         res_list[i] = N_data.count(a)
+res = []
+for i in range(M):
+    s = 0
+    e = N - 1
 
-for i in M_data:
-    dict[i] = 0
+    left = 0
+    right = N-1
+    target = cards[i]
+    # 오른쪽 찾기
+    while s <= e:
+        mid = (s + e) // 2
+        if ls[mid] > target:
+            e = mid - 1
+        else:
+            s = mid + 1
+    right = e
 
-for i in range(N):
-    if dict.get(N_data[i],'Nothing') != 'Nothing':
-        dict[N_data[i]] = dict[N_data[i]] + 1
+    # 왼쪽 찾기
+    s = 0
+    e = N - 1
+    while s <= e:
+        mid = (s + e) // 2
+        if ls[mid] < target:
+            s = mid + 1
+        else:
+            e = mid - 1
 
-for i in M_data:                # M 데이터가 중복으로 들어오는 경우 해결
-    print(dict[i], end=' ')
+    left = s
+
+    res.append(right - left + 1)
+
+print(*res)
